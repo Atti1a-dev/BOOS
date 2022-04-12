@@ -3,27 +3,27 @@
   "id": "modid",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "BOOS",
+  "description": "This mod is crazy! But if you see this message, remind Ted that he needs to update the mod description.",
   "authors": [
-    "Me!"
+    "Ted"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/Atti1a-dev/BOOS"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/boos/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.twnh.boos.Boos"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "boos.mixins.json"
   ],
 
   "depends": {
