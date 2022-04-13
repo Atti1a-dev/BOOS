@@ -13,20 +13,25 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.twnh.boos.Entity.EyeEntity;
 import net.twnh.boos.Entity.TestEntity;
 import net.twnh.boos.Item.NewItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import software.bernie.geckolib3.GeckoLib;
 
 
 public class Boos implements ModInitializer {
+
+	// Because I'm tired of trying to keep track of the hardcoded namespaces
+	public static final String MOD_ID = "boos";
 
 	// This logger is used to write text to the console and the log file.
 	public static final Logger LOGGER = LoggerFactory.getLogger("BOOS");
 
 	// ITEMGROUPS
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
-			new Identifier("boos", "general"),
+			new Identifier(Boos.MOD_ID, "general"),
 			() -> new ItemStack(Boos.NEW_ITEM));
 
 	// ITEMS
@@ -35,8 +40,13 @@ public class Boos implements ModInitializer {
 	// ENTITIES
 	public static final EntityType<TestEntity> TEST_ENTITY = Registry.register(
 			Registry.ENTITY_TYPE,
-			new Identifier("boos", "test_entity"),
+			new Identifier(Boos.MOD_ID, "test_entity"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TestEntity::new).dimensions(EntityDimensions.fixed(0.75f, 0.75f)).build()
+	);
+	public static final EntityType<EyeEntity> EYE_ENTITY = Registry.register(
+			Registry.ENTITY_TYPE,
+			new Identifier(Boos.MOD_ID, "eye_boss_entity"),
+			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EyeEntity::new).dimensions(EntityDimensions.fixed(4f, 4f)).build()
 	);
 
 	@Override
@@ -47,10 +57,14 @@ public class Boos implements ModInitializer {
 
 		LOGGER.info("Hello Fabric world!");
 
+		// Get my animations working
+		GeckoLib.initialize();
+
 		// ITEMS
-		Registry.register(Registry.ITEM, new Identifier("boos", "new_item"), NEW_ITEM);
+		Registry.register(Registry.ITEM, new Identifier(Boos.MOD_ID, "new_item"), NEW_ITEM);
 
 		// ENTITIES
 		FabricDefaultAttributeRegistry.register(TEST_ENTITY, TestEntity.createMobAttributes());
+		FabricDefaultAttributeRegistry.register(EYE_ENTITY, EyeEntity.createMobAttributes());
 	}
 }

@@ -1,8 +1,9 @@
-package net.twnh.boos.Entity.Renderer;
+package net.twnh.boos.Entity.Render;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
+import net.twnh.boos.Boos;
 import net.twnh.boos.BoosClient;
 import net.twnh.boos.Entity.Model.TestEntityModel;
 import net.twnh.boos.Entity.TestEntity;
@@ -14,6 +15,6 @@ public class TestEntityRenderer extends MobEntityRenderer<TestEntity, TestEntity
 
     @Override
     public Identifier getTexture(TestEntity entity) {
-        return new Identifier("boos", "textures/entity/test/test.png");
+        return new Identifier(Boos.MOD_ID, "textures/entity/test/test.png");
     }
 }
